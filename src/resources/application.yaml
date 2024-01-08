@@ -1,0 +1,12 @@
+server:
+    port: 8000
+spring:
+    application:
+        name: API-GATEWAY-SERVICE
+    cloud:
+        gatewat:
+            routes:
+                - id: USERS-SERVICE
+                uri: http://localhost:9001
+                predicates:
+                    - Path=/users/**
