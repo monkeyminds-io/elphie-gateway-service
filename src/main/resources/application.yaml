@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: API-GATEWAY-SERVICE
+  cloud:
+    gateway:
+
+      # This is the CROSS Configuration to allow only access from Elphie FE URL 
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:3000/"
+            allowedMethods:
+            - GET,POST,PUT,DELETE
+
+      # This are the Routes declaration to the Services
+      routes:
+
+      # Users Service Route
+      - id: USERS-SERVICE
+        uri: http://localhost:9000
+        predicates:
+        - Path=/users/**
+        - Method=GET,POST,PUT,DELETE
+
+      # Goals Service Route
+      - id: GOALS-SERVICE
+        uri: http://localhost:9001
+        predicates:
+        - Path=/goals/**
+        - Method=GET,POST,PUT,DELETE
