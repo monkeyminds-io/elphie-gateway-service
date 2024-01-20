@@ -1,6 +1,6 @@
 spring:
   application:
-    name: API-GATEWAY-SERVICE
+    name: GATEWAY-SERVICE
   cloud:
     gateway:
 
@@ -22,9 +22,16 @@ spring:
         - Path=/users/**
         - Method=GET,POST,PUT,DELETE
 
-      # Goals Service Route
-      - id: GOALS-SERVICE
+      # Savings Service Route
+      - id: SAVINGS-SERVICE
         uri: http://localhost:9001
         predicates:
-        - Path=/goals/**
+        - Path=/savings/**
+        - Method=GET,POST,PUT,DELETE
+
+      # Accounts Service Route
+      - id: ACCOUNTS-SERVICE
+        uri: http://localhost:9002
+        predicates:
+        - Path=/accounts/**,/transactions/**
         - Method=GET,POST,PUT,DELETE
